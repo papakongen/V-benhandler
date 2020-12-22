@@ -8,7 +8,6 @@
 
 local Tunnel = module("vrp", "lib/Tunnel") 
 local Proxy = module("vrp", "lib/Proxy")
-local narkopris = 45
 
 vRP = Proxy.getInterface("vRP") 
 
