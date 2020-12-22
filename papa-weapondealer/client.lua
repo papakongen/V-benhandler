@@ -20,7 +20,6 @@ Citizen.CreateThread(function ()
         if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -430.5947265625,90.687477111816,64.263244628906, true ) < 3.0 then
             DrawText3Ds(-430.5947265625,90.687477111816,64.263244628906, "Tryk [~g~E~w~] for at købe våben kontrakt")
                 if (IsControlJustReleased(1, 38)) then
-                    if vRP.hasGroup({user_id,"Våbenhandler" }) then
                 TriggerServerEvent('weapondealer:Weaponbuy')
             else
                 exports['mythic_notify']:DoCustomHudText('error', 'Du er ikke våbenhandler', 2500)
@@ -37,7 +36,6 @@ Citizen.CreateThread(function ()
         if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 708.54638671875,-310.10708618164,59.246913909912, true ) < 3.0 then
             DrawText3Ds(708.54638671875,-310.10708618164,59.246913909912, "Tryk [~g~E~w~] for at købe ammunition kontrakt")
                 if (IsControlJustReleased(1, 38)) then
-                    if vRP.hasGroup({user_id,"Våbenhandler" }) then
                 TriggerServerEvent('weapondealer:Bulletbuy')
             else
                 exports['mythic_notify']:DoCustomHudText('error', 'Du er ikke våbenhandler', 2500)
