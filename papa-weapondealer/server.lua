@@ -8,10 +8,11 @@
 
 local Tunnel = module("vrp", "lib/Tunnel") 
 local Proxy = module("vrp", "lib/Proxy")
+local narkopris = 45
 
 vRP = Proxy.getInterface("vRP") 
 
-
+--pistol
 RegisterServerEvent('weapondealer:Weaponbuy')
 AddEventHandler('weapondealer:Weaponbuy', function()
 local source = source
@@ -58,9 +59,12 @@ AddEventHandler('weapondealer:make', function()
     local user_id = vRP.getUserId({source}) 
     local antal = math.random(1) 
     local amount = math.random(1) 
+    if vRP.hasInventoryItem({user_id, "papavåben", 1, false}) and vRP.hasInventoryItem({user_id, "papavåben2", 1, false}) and vRP.hasInventoryItem({user_id, "papavåben3", 1, false}) then
+      Citizen.Wait(1500)
       if vRP.tryGetInventoryItem({user_id,"papavåben",antal}) and vRP.tryGetInventoryItem({user_id,"papavåben2",antal}) and vRP.tryGetInventoryItem({user_id,"papavåben3",antal})  then
-        vRP.giveInventoryItem({user_id,"wbody|WEAPON_PISTOL",amount}) 
+        vRP.giveInventoryItem({user_id,"wbody|WEAPON_PISTOL50",amount}) 
     end
+  end
 end)
 
 vRP.defInventoryItem({"våbenkontrakt","Våbenkontrakt","Bruges til at skaffe våben dele", function()
@@ -129,4 +133,14 @@ end)
 
 
 
-
+--tommygun
+RegisterServerEvent('tommydealer:make') 
+AddEventHandler('tommydealer:make', function() 
+    local source = source 
+    local user_id = vRP.getUserId({source}) 
+    local antal = math.random(1) 
+    local amount = math.random(1) 
+      if vRP.tryGetInventoryItem({user_id,"papavåben",antal}) and vRP.tryGetInventoryItem({user_id,"papavåben2",antal}) and vRP.tryGetInventoryItem({user_id,"papavåben3",antal})  then
+        vRP.giveInventoryItem({user_id,"wbody|WEAPON_GUSENBERG",amount}) 
+    end
+end)
