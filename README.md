@@ -12,5 +12,6 @@ Det er bare drag and drop det eneste du skal tilføje er
   
   er det her i items.lua
   
-  
+Video: https://streamable.com/6xsg25  
+
   papakongen
