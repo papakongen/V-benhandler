@@ -1,4 +1,3 @@
-
 --██████╗░░█████╗░██████╗░░█████╗░██╗░░██╗░█████╗░███╗░░██╗░██████╗░███████╗███╗░░██╗
 --██╔══██╗██╔══██╗██╔══██╗██╔══██╗██║░██╔╝██╔══██╗████╗░██║██╔════╝░██╔════╝████╗░██║
 --██████╔╝███████║██████╔╝███████║█████═╝░██║░░██║██╔██╗██║██║░░██╗░█████╗░░██╔██╗██║
@@ -13,6 +12,8 @@ local searchingDrugs = false
 
 local rewardTime = math.random(4,7)
 
+--pistol
+
 Citizen.CreateThread(function ()
     while true do
         Citizen.Wait(1)
@@ -21,9 +22,6 @@ Citizen.CreateThread(function ()
             DrawText3Ds(-430.5947265625,90.687477111816,64.263244628906, "Tryk [~g~E~w~] for at købe våben kontrakt")
                 if (IsControlJustReleased(1, 38)) then
                 TriggerServerEvent('weapondealer:Weaponbuy')
-            else
-                exports['mythic_notify']:DoCustomHudText('error', 'Du er ikke våbenhandler', 2500)
-               end
             end       	
         end
     end
@@ -37,9 +35,6 @@ Citizen.CreateThread(function ()
             DrawText3Ds(708.54638671875,-310.10708618164,59.246913909912, "Tryk [~g~E~w~] for at købe ammunition kontrakt")
                 if (IsControlJustReleased(1, 38)) then
                 TriggerServerEvent('weapondealer:Bulletbuy')
-            else
-                exports['mythic_notify']:DoCustomHudText('error', 'Du er ikke våbenhandler', 2500)
-               end
             end       	
         end
     end
@@ -52,12 +47,12 @@ Citizen.CreateThread(function ()
         if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 319.50421142578,2883.2502441406,46.382823944092) < 0.7 then 
             DrawText3Ds(319.50421142578,2883.2502441406,46.382823944092, "Tryk [~g~E~s~] for at lave en pistol")
             if (IsControlJustReleased(1, 38)) then 
-                exports['progressBars']:startUI(35000, "Laver pistol.")
+                exports['progressBars']:startUI(2000, "Laver pistol.")
                 FreezeEntityPosition(PlayerPedId(), true) 
                 RequestAnimDict("amb@prop_human_bum_bin@idle_b") 
                 while (not HasAnimDictLoaded("amb@prop_human_bum_bin@idle_b")) do Citizen.Wait(0) end 
                   TaskPlayAnim(spiller,"amb@prop_human_bum_bin@idle_b","idle_d",100.0, 200.0, 0.3, 120, 0.2, 0, 0, 0) 
-                  Citizen.Wait(35000)
+                  Citizen.Wait(2000)
                   StopAnimTask(spiller, "amb@prop_human_bum_bin@idle_b","idle_d", 1.0) 
                   FreezeEntityPosition(PlayerPedId(), false)
                 TriggerServerEvent('weapondealer:make') 
@@ -164,6 +159,29 @@ Citizen.CreateThread(function()
     end 
 end)
 
+
+--tommy
+
+Citizen.CreateThread(function () 
+    while true do 
+        Citizen.Wait(1) 
+        local spiller = PlayerPedId() 
+        if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 508.60101318359,3100.3171386719,41.307903289795) < 0.7 then 
+            DrawText3Ds(508.60101318359,3100.3171386719,41.307903289795, "Tryk [~g~E~s~] for at lave en tommy gun")
+            if (IsControlJustReleased(1, 38)) then 
+                exports['progressBars']:startUI(35000, "Laver en tommy gun.")
+                FreezeEntityPosition(PlayerPedId(), true) 
+                RequestAnimDict("amb@prop_human_bum_bin@idle_b") 
+                while (not HasAnimDictLoaded("amb@prop_human_bum_bin@idle_b")) do Citizen.Wait(0) end 
+                  TaskPlayAnim(spiller,"amb@prop_human_bum_bin@idle_b","idle_d",100.0, 200.0, 0.3, 120, 0.2, 0, 0, 0) 
+                  Citizen.Wait(35000)
+                  StopAnimTask(spiller, "amb@prop_human_bum_bin@idle_b","idle_d", 1.0) 
+                  FreezeEntityPosition(PlayerPedId(), false)
+                TriggerServerEvent('tommydealer:make') 
+            end
+        end
+    end
+end)
 
 function DrawText3Ds(x,y,z, text)
     local onScreen, _x, _y = World3dToScreen2d(x, y, z)
