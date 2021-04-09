@@ -18,12 +18,13 @@ AddEventHandler('weapondealer:Weaponbuy', function()
 local source = source
 local user_id = vRP.getUserId({source})
 local player = vRP.getUserSource({user_id})
+local weaponprice = 150000
 	vRP.prompt({player,"Er du sikker på, at du vil købe en våben kontrakt? (ja/nej) (150.000 DKK)","",function(player,answer)
 		if string.lower(tostring(answer)) == "ja" then
 			if vRP.giveInventoryItem({user_id,"våbenkontrakt",1}) then
 				TriggerClientEvent("pNotify:SendNotification", player,{text = "Du har allerede købt en våben kontrakt.", type = "error", queue = "global", timeout = 4000, layout = "centerLeft",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"},killer = true})
 			else
-				if vRP.tryFullPayment({user_id,150000}) then
+				if vRP.tryFullPayment({user_id,weaponprice}) then
 					TriggerClientEvent("pNotify:SendNotification", player,{text = "Du købte en våben kontrakt", type = "error", queue = "global", timeout = 4000, layout = "centerLeft",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"},killer = true})
     			else
 					TriggerClientEvent("pNotify:SendNotification", player,{text = "Du har ikke råd.", type = "error", queue = "global", timeout = 4000, layout = "centerLeft",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"},killer = true})
@@ -38,12 +39,13 @@ AddEventHandler('weapondealer:Bulletbuy', function()
 local source = source
 local user_id = vRP.getUserId({source})
 local player = vRP.getUserSource({user_id})
+local bulletprice = 75000
 	vRP.prompt({player,"Er du sikker på, at du vil købe en ammunition kontrakt? (ja/nej) (75.000 DKK)","",function(player,answer)
 		if string.lower(tostring(answer)) == "ja" then
 			if vRP.giveInventoryItem({user_id,"ammunitionkontrakt",1}) then
 				TriggerClientEvent("pNotify:SendNotification", player,{text = "Du har allerede købt en ammunition kontrakt.", type = "error", queue = "global", timeout = 4000, layout = "centerLeft",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"},killer = true})
 			else
-				if vRP.tryFullPayment({user_id,75000}) then
+				if vRP.tryFullPayment({user_id,bulletprice}) then
 					TriggerClientEvent("pNotify:SendNotification", player,{text = "Du købte en ammunition kontrakt", type = "error", queue = "global", timeout = 4000, layout = "centerLeft",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"},killer = true})
     			else
 					TriggerClientEvent("pNotify:SendNotification", player,{text = "Du har ikke råd.", type = "error", queue = "global", timeout = 4000, layout = "centerLeft",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"},killer = true})
